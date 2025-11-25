@@ -14,7 +14,7 @@ export default function LoginPage() {
     try {
       await authAPI.login(form);
       toast.success("Login successful!");
-      router.push("/dashboard");
+      window.location.href = "/dashboard";
     } catch (err) {
       if (axios.isAxiosError(err)) {
         toast.error(err.response?.data?.message || "Login failed");
