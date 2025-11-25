@@ -4,6 +4,7 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 import { authAPI } from "./lib/api";
 import { useRouter } from "next/navigation";
+import axios from "axios";
 
 export default function LoginPage() {
   const [form, setForm] = useState({ email: "", password: "" });
@@ -15,7 +16,11 @@ export default function LoginPage() {
       toast.success("Login successful!");
       router.push("/dashboard");
     } catch (err) {
-      toast.error(err?.response?.data?.message || "Login failed");
+      if (axios.isAxiosError(err)) {
+        toast.error(err.response?.data?.message || "Login failed");
+      } else {
+        toast.error("Login failed");
+      }
     }
   };
 
