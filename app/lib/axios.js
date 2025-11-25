@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "http://localhost:4000", // your backend
+  baseURL: process.env.SERVER_URL, // your backend
   withCredentials: true, // send httpOnly cookie
 });
 
